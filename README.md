@@ -27,6 +27,6 @@ You will need to run one by one sequentially followinng the order listed above.
 
 NOTE: the training and bias estimation of this model will take several hours and space in your disk!
 
-
+The ready-to-use user version of the codes is available at the FAIR repository Zenodo for downloading at the link: https://zenodo.org/record/8318987
 
 If you have any issues please write to: maurizio.petrelli@unipg.it, monica.agredalopez@studenti.unipg.it
