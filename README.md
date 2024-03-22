@@ -1,14 +1,14 @@
-# Clinopyroxene-Thermo-Chemo-Barometry
+# Enhancing Machine Learning Thermobarometry for Clinopyroxene-Bearing Magmas
 Hello and welcome!
 
-This is the series of codes used to calibrate and test the different results from the clinopyroxene Thermo-chemo-barometers presented in Agreda-Lopez et al (2023) submitted to Computers and Geosciences journal.
+This is the series of codes used to calibrate and test the different results from the enhanced clinopyroxene (cpx) and clinoyroxene-liquid (cpx-liq) thermo-barometers presented in Ágreda-López et al. (2024) submitted to Computers and Geosciences journal.
 
 The general workflow goes like this:
 
-1. you will find two folders.  Select the one that you need:
+1. you will find two folders.  Select the one that better fits your needs:
 
-1a. P-T: contains the scripts for estimating pressure (P) and temperature (T).
-1b. X: contains the scripts for estimating the liquid composition (X) in equilibrium with clinopyroxene composition.
+1a. ML_PT_Pyworkflow: contains the scripts for estimating pressure (P) and temperature (T).
+1b. Web app: contains the scripts for estimating the liquid composition (X) in equilibrium with clinopyroxene composition.
 
 
 2. Inside those folders you will find:
