@@ -1,4 +1,4 @@
-# Enhancing Machine Learning Thermobarometry for Clinopyroxene-Bearing Magmas
+# Enhancing ML Thermobarometry for Clinopyroxene-Bearing Magmas: Web app
 Hello and welcome!
 
 This is the series of codes behind our Web app. Visit directly the app in this link: https://cpx-thermobarometry.streamlit.app
