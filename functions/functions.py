@@ -101,33 +101,6 @@ def to_excel(df, index=False, startrow = 0):
     return processed_data
 
 
-#@st.cache
-#def convert_df(df):
-#    return df.to_csv().encode('utf-8')
-#
-#
-#def get_base64(bin_file):
-#    with open(bin_file, 'rb') as f:
-#        data = f.read()
-#    return base64.b64encode(data).decode()
-#
-#
-#def set_png_as_page_bg(png_file, opacity=1):
-#    bin_str = get_base64(png_file)
-#    page_bg_img = '''
-#    <style>
-#    .stApp {
-#    background-image: url("data:image/png;base64,%s");
-#    background-size: cover;
-#    background-opacity:opacity;
-#    background-repeat: no-repeat;
-#    background-attachment: scroll; # doesn't work
-#    }
-#    </style>
-#    ''' % bin_str
-#    st.markdown(page_bg_img, unsafe_allow_html=True)
-#    return
-
 def plothist(df_output):
     targets = ['P (kbar)', 'T (C)']
     x_lab = ['Pressure [kbar]', 'Temperature [°C]']
