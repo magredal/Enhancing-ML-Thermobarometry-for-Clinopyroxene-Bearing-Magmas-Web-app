@@ -7,9 +7,10 @@ from functions.predictions import *
 from functions.functions import *
 
 
+
   ## SETTING AND HEADER   ###
 
-im = Image.open("imgs/logo.png")
+im = Image.open("imgs/logo.PNG")
 
 st.set_page_config(
     page_title="ML cpx Thermobarometry",
@@ -18,7 +19,7 @@ st.set_page_config(
 )
 
 
-im2 = Image.open("imgs/logo.png")
+im2 = Image.open("imgs/logo.PNG")
 
 col1, col2 = st.columns([1.2, 1])
 with col1:
@@ -36,7 +37,7 @@ st.write(
 **Input Your Data:** Simply download our template and fill in your own values. Leave unknown values blank.\n\n\
 **Upload Your Data:** Once your template is filled out, upload it to our system.\n\n\
 **Add Analytical Uncertainty:** If you have information on the analytical uncertainty of each oxide, please provide it in the corresponding box. If not, you can use the default values.\n\n\
-**Get Your Results:** Download your results by clicking here.")
+**Get Your Results:** Download your results.")
 
 ## INPUT##
 
@@ -103,34 +104,20 @@ if cpx == "cpx_only":
 
     c1, c2, c3, c4, c5 = st.columns([1, 1, 1, 1, 1])
     with c1:
-        std_dev_perc[0] = st.number_input("SiO2_Cpx_Error", key="SiO2_Cpx_Error", on_change=save_value_cpx)
-        std_dev_perc[1] = st.number_input('TiO2_Cpx_Error', key="TiO2_Cpx_Error", on_change=save_value_cpx)
+        std_dev_perc[0] = st.number_input("SiO2_Cpx_Error (0.03)", key="SiO2_Cpx_Error", on_change=save_value_cpx)
+        std_dev_perc[1] = st.number_input('TiO2_Cpx_Error (0.08)', key="TiO2_Cpx_Error", on_change=save_value_cpx)
     with c2:
-        std_dev_perc[2] = st.number_input('Al2O3_Cpx_Error', key="Al2O3_Cpx_Error", on_change=save_value_cpx)
-        std_dev_perc[3] = st.number_input('FeOt_Cpx_Error', key="FeOt_Cpx_Error", on_change=save_value_cpx)
+        std_dev_perc[2] = st.number_input('Al2O3_Cpx_Error (0.03)', key="Al2O3_Cpx_Error", on_change=save_value_cpx)
+        std_dev_perc[3] = st.number_input('FeOt_Cpx_Error (0.03)', key="FeOt_Cpx_Error", on_change=save_value_cpx)
     with c3:
-        std_dev_perc[4] = st.number_input('MgO_Cpx_Error', key="MgO_Cpx_Error", on_change=save_value_cpx)
-        std_dev_perc[5] = st.number_input('MnO_Cpx_Error', key="MnO_Cpx_Error", on_change=save_value_cpx)
+        std_dev_perc[4] = st.number_input('MgO_Cpx_Error (0.03)', key="MgO_Cpx_Error", on_change=save_value_cpx)
+        std_dev_perc[5] = st.number_input('MnO_Cpx_Error (0.08)', key="MnO_Cpx_Error", on_change=save_value_cpx)
     with c4:
-        std_dev_perc[6] = st.number_input('CaO_Cpx_Error', key="CaO_Cpx_Error", on_change=save_value_cpx)
-        std_dev_perc[7] = st.number_input('Na2O_Cpx_Error', key="Na2O_Cpx_Error", on_change=save_value_cpx)
+        std_dev_perc[6] = st.number_input('CaO_Cpx_Error (0.03)', key="CaO_Cpx_Error", on_change=save_value_cpx)
+        std_dev_perc[7] = st.number_input('Na2O_Cpx_Error (0.08)', key="Na2O_Cpx_Error", on_change=save_value_cpx)
     with c5:
-        std_dev_perc[8] = st.number_input('Cr2O3_Cpx_Error', key="Cr2O3_Cpx_Error", on_change=save_value_cpx)
+        std_dev_perc[8] = st.number_input('Cr2O3_Cpx_Error (0.08)', key="Cr2O3_Cpx_Error", on_change=save_value_cpx)
 
-
-    reset = st.button('Reset default values \n\n (click twice)')
-
-
-    if reset:
-        st.session_state.SiO2_Cpx = std_dev_perc_default[0]
-        st.session_state.TiO2_Cpx = std_dev_perc_default[1] 
-        st.session_state.Al2O3_Cpx = std_dev_perc_default[2] 
-        st.session_state.FeOt_Cpx = std_dev_perc_default[3] 
-        st.session_state.MgO_Cpx = std_dev_perc_default[4] 
-        st.session_state.MnO_Cpx = std_dev_perc_default[5] 
-        st.session_state.CaO_Cpx = std_dev_perc_default[6]  
-        st.session_state.Na2O_Cpx = std_dev_perc_default[7] 
-        st.session_state.Cr2O3_Cpx = std_dev_perc_default[8] 
 
     ## PROCESSING##
       
@@ -238,57 +225,35 @@ else:
 
     c1, c2, c3, c4, c5 = st.columns([1, 1, 1, 1, 1])
     with c1:
-        std_dev_perc[0] = st.number_input("SiO2_Cpx_Error", key="SiO2_Cpx_Error", on_change=save_value_cpx)
-        std_dev_perc[1] = st.number_input('TiO2_Cpx_Error', key="TiO2_Cpx_Error", on_change=save_value_cpx)
-        std_dev_perc[2] = st.number_input('Al2O3_Cpx_Error', key="Al2O3_Cpx_Error", on_change=save_value_cpx)
-        std_dev_perc[3] = st.number_input('FeOt_Cpx_Error', key="FeOt_Cpx_Error", on_change=save_value_cpx)
+        std_dev_perc[0] = st.number_input("SiO2_Cpx_Error (0.03)", key="SiO2_Cpx_Error", on_change=save_value_cpx)
+        std_dev_perc[1] = st.number_input('TiO2_Cpx_Error (0.08)', key="TiO2_Cpx_Error", on_change=save_value_cpx)
+        std_dev_perc[2] = st.number_input('Al2O3_Cpx_Error (0.03)', key="Al2O3_Cpx_Error", on_change=save_value_cpx)
+        std_dev_perc[3] = st.number_input('FeOt_Cpx_Error (0.03)', key="FeOt_Cpx_Error", on_change=save_value_cpx)
     with c2:
-        std_dev_perc[4] = st.number_input('MgO_Cpx_Error', key="MgO_Cpx_Error", on_change=save_value_cpx)
-        std_dev_perc[5] = st.number_input('MnO_Cpx_Error', key="MnO_Cpx_Error", on_change=save_value_cpx)
-        std_dev_perc[6] = st.number_input('CaO_Cpx_Error', key="CaO_Cpx_Error", on_change=save_value_cpx)
-        std_dev_perc[7] = st.number_input('Na2O_Cpx_Error', key="Na2O_Cpx_Error", on_change=save_value_cpx)
+        std_dev_perc[4] = st.number_input('MgO_Cpx_Error (0.03)', key="MgO_Cpx_Error", on_change=save_value_cpx)
+        std_dev_perc[5] = st.number_input('MnO_Cpx_Error (0.03)', key="MnO_Cpx_Error", on_change=save_value_cpx)
+        std_dev_perc[6] = st.number_input('CaO_Cpx_Error (0.03)', key="CaO_Cpx_Error", on_change=save_value_cpx)
+        std_dev_perc[7] = st.number_input('Na2O_Cpx_Error (0.08)', key="Na2O_Cpx_Error", on_change=save_value_cpx)
     with c3:
-        std_dev_perc[8] = st.number_input('Cr2O3_Cpx_Error', key="Cr2O3_Cpx_Error", on_change=save_value_cpx)
-        std_dev_perc[9] = st.number_input("SiO2_Liq_Error", key="SiO2_Liq_Error", on_change=save_value_liq)
-        std_dev_perc[10] = st.number_input('TiO2_Liq_Error', key="TiO2_Liq_Error", on_change=save_value_liq)
-        std_dev_perc[11] = st.number_input('Al2O3_Liq_Error', key="Al2O3_Liq_Error", on_change=save_value_liq)    
+        std_dev_perc[8] = st.number_input('Cr2O3_Cpx_Error (0.08)', key="Cr2O3_Cpx_Error", on_change=save_value_cpx)
+        std_dev_perc[9] = st.number_input("SiO2_Liq_Error (0.03)", key="SiO2_Liq_Error", on_change=save_value_liq)
+        std_dev_perc[10] = st.number_input('TiO2_Liq_Error (0.08)', key="TiO2_Liq_Error", on_change=save_value_liq)
+        std_dev_perc[11] = st.number_input('Al2O3_Liq_Error (0.03)', key="Al2O3_Liq_Error", on_change=save_value_liq)    
     with c4:
-        std_dev_perc[12] = st.number_input('FeOt_Liq_Error', key="FeOt_Liq_Error", on_change=save_value_liq)
-        std_dev_perc[13] = st.number_input('MgO_Liq_Error', key="MgO_Liq_Error", on_change=save_value_liq)
-        std_dev_perc[14] = st.number_input('MnO_Liq_Error', key="MnO_Liq_Error", on_change=save_value_liq)
-        std_dev_perc[15] = st.number_input('CaO_Liq_Error', key="CaO_Liq_Error", on_change=save_value_liq)      
+        std_dev_perc[12] = st.number_input('FeOt_Liq_Error (0.03)', key="FeOt_Liq_Error", on_change=save_value_liq)
+        std_dev_perc[13] = st.number_input('MgO_Liq_Error (0.03)', key="MgO_Liq_Error", on_change=save_value_liq)
+        std_dev_perc[14] = st.number_input('MnO_Liq_Error (0.08)', key="MnO_Liq_Error", on_change=save_value_liq)
+        std_dev_perc[15] = st.number_input('CaO_Liq_Error (0.03)', key="CaO_Liq_Error", on_change=save_value_liq)      
     with c5:
-        std_dev_perc[16] = st.number_input('Na2O_Liq_Error', key="Na2O_Liq_Error", on_change=save_value_liq)
-        std_dev_perc[17] = st.number_input('K2O_Liq_Error', key="K2O_Liq_Error", on_change=save_value_liq)
-
-    reset = st.button('Reset default values')
-
-    if reset:
-        st.session_state.SiO2_Cpx = std_dev_perc_default[0]
-        st.session_state.TiO2_Cpx = std_dev_perc_default[1] 
-        st.session_state.Al2O3_Cpx = std_dev_perc_default[2] 
-        st.session_state.FeOt_Cpx = std_dev_perc_default[3] 
-        st.session_state.MgO_Cpx = std_dev_perc_default[4] 
-        st.session_state.MnO_Cpx = std_dev_perc_default[5] 
-        st.session_state.CaO_Cpx = std_dev_perc_default[6]  
-        st.session_state.Na2O_Cpx = std_dev_perc_default[7] 
-        st.session_state.Cr2O3_Cpx = std_dev_perc_default[8] 
-        st.session_state.SiO2_Liq = std_dev_perc_default[9]
-        st.session_state.TiO2_Liq = std_dev_perc_default[10] 
-        st.session_state.Al2O3_Liq = std_dev_perc_default[11] 
-        st.session_state.FeOt_Liq = std_dev_perc_default[12] 
-        st.session_state.MgO_Liq = std_dev_perc_default[13] 
-        st.session_state.MnO_Liq = std_dev_perc_default[14] 
-        st.session_state.CaO_Liq = std_dev_perc_default[15]  
-        st.session_state.Na2O_Liq = std_dev_perc_default[16] 
-        st.session_state.K2O_Liq = std_dev_perc_default[17]
+        std_dev_perc[16] = st.number_input('Na2O_Liq_Error (0.08)', key="Na2O_Liq_Error", on_change=save_value_liq)
+        std_dev_perc[17] = st.number_input('K2O_Liq_Error (0.08)', key="K2O_Liq_Error", on_change=save_value_liq)
 
 
     ## PROCESSING##
       
     st.header("Processing")
     
-    st.markdown("Upload a file:")
+    st.markdown("Upload a file. If you want to use our dataset, upload nothing.")
     
     uploaded_file = st.file_uploader("Choose a file")
     
@@ -314,6 +279,11 @@ if st.button('Make predictions'):
     unsafe_allow_html=True) 
     
     # predict and show results
+    try:
+        df
+    except:
+        df = input_example
+
 
     df_output = predict(df,std_dev_perc,cpx)   
     st.write('Predicted values:')
