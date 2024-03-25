@@ -142,7 +142,8 @@ if cpx == "cpx_only":
         std_dev_perc[8] = st.number_input('Cr2O3_Cpx_Error', key="Cr2O3_Cpx_Error", on_change=save_value_cpx)
 
 
-    reset = st.button('Reset default values')
+    reset = st.button('Reset default values \n\n (click twice)')
+
 
     if reset:
         st.session_state.SiO2_Cpx = std_dev_perc_default[0]
