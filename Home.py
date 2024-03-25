@@ -7,30 +7,6 @@ from functions.predictions import *
 from functions.functions import *
 
 
-
-def save_value_cpx():
-    st.session_state["SiO2_Cpx"] = st.session_state["SiO2_Cpx_Error"]
-    st.session_state["TiO2_Cpx"] = st.session_state["TiO2_Cpx_Error"]
-    st.session_state["Al2O3_Cpx"] = st.session_state["Al2O3_Cpx_Error"]
-    st.session_state["FeOt_Cpx"] = st.session_state["FeOt_Cpx_Error"]
-    st.session_state["MgO_Cpx"] = st.session_state["MgO_Cpx_Error"]
-    st.session_state["MnO_Cpx"] = st.session_state["MnO_Cpx_Error"]
-    st.session_state["CaO_Cpx"] = st.session_state["CaO_Cpx_Error"]
-    st.session_state["Na2O_Cpx"] = st.session_state["Na2O_Cpx_Error"]
-    st.session_state["Cr2O3_Cpx"] = st.session_state["Cr2O3_Cpx_Error"]
-
-
-def save_value_liq():
-    st.session_state["SiO2_Liq"] = st.session_state["SiO2_Liq_Error"]
-    st.session_state["TiO2_Liq"] = st.session_state["TiO2_Liq_Error"]
-    st.session_state["Al2O3_Liq"] = st.session_state["Al2O3_Liq_Error"]
-    st.session_state["FeOt_Liq"] = st.session_state["FeOt_Liq_Error"]
-    st.session_state["MgO_Liq"] = st.session_state["MgO_Liq_Error"]
-    st.session_state["MnO_Liq"] = st.session_state["MnO_Liq_Error"]
-    st.session_state["CaO_Liq"] = st.session_state["CaO_Liq_Error"]
-    st.session_state["Na2O_Liq"] = st.session_state["Na2O_Liq_Error"]
-    st.session_state["K2O_Liq"] = st.session_state["K2O_Liq_Error"]
-
   ## SETTING AND HEADER   ###
 
 im = Image.open("imgs/logo.png")
