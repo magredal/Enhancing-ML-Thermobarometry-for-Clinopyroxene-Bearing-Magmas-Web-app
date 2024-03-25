@@ -10,7 +10,7 @@ from functions.functions import *
 
   ## SETTING AND HEADER   ###
 
-im = Image.open("imgs/logo.PNG")
+im = Image.open("imgs/logo.png")
 
 st.set_page_config(
     page_title="ML cpx Thermobarometry",
@@ -19,7 +19,7 @@ st.set_page_config(
 )
 
 
-im2 = Image.open("imgs/logo.PNG")
+im2 = Image.open("imgs/logo.png")
 
 col1, col2 = st.columns([1.2, 1])
 with col1:
