@@ -253,7 +253,7 @@ else:
       
     st.header("Processing")
     
-    st.markdown("Upload a file. If you want to use our dataset, upload nothing.")
+    st.markdown("Upload a file")
     
     uploaded_file = st.file_uploader("Choose a file")
     
