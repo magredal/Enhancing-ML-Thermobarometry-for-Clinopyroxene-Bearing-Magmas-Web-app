@@ -280,7 +280,7 @@ if st.button('Make predictions'):
     
     # predict and show results
     try:
-        df
+        df = df
     except:
         df = input_example
 
