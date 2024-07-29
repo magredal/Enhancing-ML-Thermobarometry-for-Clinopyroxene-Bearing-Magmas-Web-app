@@ -30,9 +30,14 @@ def predict(data,std_dev_perc,cpx):
 
     if cpx == 'cpx_only':
         Elements = ['SiO2_Cpx', 'TiO2_Cpx', 'Al2O3_Cpx', 'FeOt_Cpx', 'MgO_Cpx', 'MnO_Cpx', 'CaO_Cpx',  'Na2O_Cpx', 'Cr2O3_Cpx']
+        Elements_std = ['SiO2_Cpx_std', 'TiO2_Cpx_std', 'Al2O3_Cpx_std', 'FeOt_Cpx_std', 'MgO_Cpx_std', 'MnO_Cpx_std', 'CaO_Cpx_std',
+                        'Na2O_Cpx_std', 'Cr2O3_Cpx_std']
     else:
         Elements = ['SiO2_Cpx', 'TiO2_Cpx', 'Al2O3_Cpx', 'FeOt_Cpx', 'MgO_Cpx', 'MnO_Cpx', 'CaO_Cpx',  'Na2O_Cpx', 'Cr2O3_Cpx',
                     'SiO2_Liq', 'TiO2_Liq', 'Al2O3_Liq', 'FeOt_Liq', 'MgO_Liq', 'MnO_Liq', 'CaO_Liq',  'Na2O_Liq', 'K2O_Liq']
+        Elements_std = ['SiO2_Cpx_std', 'TiO2_Cpx_std', 'Al2O3_Cpx_std', 'FeOt_Cpx_std', 'MgO_Cpx_std', 'MnO_Cpx_std', 'CaO_Cpx_std',
+                        'Na2O_Cpx_std', 'Cr2O3_Cpx_std', 'SiO2_Liq_std', 'TiO2_Liq_std', 'Al2O3_Liq_std', 'FeOt_Liq_std', 'MgO_Liq_std',
+                        'MnO_Liq_std', 'CaO_Liq_std',  'Na2O_Liq_std', 'K2O_Liq_std']
     
     for element in Elements:
         df_m = replace_zeros(data.copy(), element)  
@@ -41,8 +46,10 @@ def predict(data,std_dev_perc,cpx):
 
     Xd = df_m[Elements]
     X = np.array(Xd)
+    Xd_std = std_dev_perc[Elements_std]
+    X_std = np.array(Xd_std)
 
-    X_perturb, groups = input_perturbation(X,std_dev_perc ,n_perturbations=p)
+    X_perturb, groups = input_perturbation(X,X_std ,n_perturbations=p)
 
 
     for tg in [0, 1]:
@@ -86,10 +93,30 @@ def predict(data,std_dev_perc,cpx):
         bias_temp = bias_f(unique_y_pred,
                            ang_left, bias_popt_left, 
                            ang_right, bias_popt_right)
+
+        unique_y_pred_temp = unique_y_pred - bias_temp
+        unique_y_perc_max_temp = unique_y_perc_max - bias_temp
+        unique_y_perc_min_temp =  unique_y_perc_min - bias_temp
+
+        # Bound of the training set
+        len_pred = len(unique_y_pred)
         
-        unique_y_pred = unique_y_pred - bias_temp
-        unique_y_perc_max = unique_y_perc_max - bias_temp
-        unique_y_perc_min = unique_y_perc_min - bias_temp
+        if tg == 0 and cpx == 'cpx_only':
+            max_bound = np.ones(len_pred) * 33.790000 
+            min_bound = np.ones(len_pred) * 0.000000 
+        elif tg == 0 and cpx == 'cpx_liquid':
+            max_bound = np.ones(len_pred) * 32.800000 
+            min_bound = np.ones(len_pred) * 0.000000 
+        elif tg == 1 and cpx == 'cpx_only':
+            max_bound = np.ones(len_pred) * 1892.710000 
+            min_bound = np.ones(len_pred) * 587.630000 
+        elif tg == 1 and cpx == 'cpx_liquid':
+            max_bound = np.ones(len_pred) * 1800.020000 
+            min_bound = np.ones(len_pred) * 654.660000 
+                
+        unique_y_pred = np.minimum(max_bound, np.maximum(min_bound, unique_y_pred_temp))
+        unique_y_perc_max = np.minimum(max_bound, np.maximum(min_bound, unique_y_perc_max_temp))
+        unique_y_perc_min = np.minimum(max_bound, np.maximum(min_bound, unique_y_perc_min_temp))
         
         error = (unique_y_perc_max - unique_y_perc_min)/2
 
@@ -106,8 +133,13 @@ def predict(data,std_dev_perc,cpx):
         df_output['16_Percentile - ' + target] = unique_y_perc_min
         df_output['84_Percentile - ' + target] = unique_y_perc_max
 
-    return df_output
+        if tg == 0:
+            df_output['P_warning'] = train_domain(data, cpx, 'pressure')
 
+        else:
+            df_output['T_warning'] = train_domain(data, cpx, 'temperature')
+
+    return df_output
    
 
     

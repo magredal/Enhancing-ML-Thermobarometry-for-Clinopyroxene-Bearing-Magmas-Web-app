@@ -13,6 +13,7 @@ def data_imputation(dataFrame):
     dataFrame = dataFrame.fillna(0) 
     return dataFrame 
 
+
 def replace_zeros(dataFrame, column_name):
     min_non_zero = dataFrame[dataFrame[column_name] > 0][column_name].min()
     epsilon = np.nextafter(0.0, 1.0)
@@ -21,13 +22,15 @@ def replace_zeros(dataFrame, column_name):
     )
     return dataFrame  
 
+
 def input_perturbation(X, std_dev_perc, n_perturbations=15):
     X_rep = np.repeat(X, repeats=n_perturbations, axis=0)
-    std_dev_rep = np.repeat([std_dev_perc], repeats=len(X_rep), axis=0)*X_rep
+    std_dev_rep = np.repeat(std_dev_perc, repeats=n_perturbations, axis=0)*X_rep
     np.random.seed(10)
     X_perturb = np.random.normal(X_rep, std_dev_rep)
     groups = np.repeat(np.arange(len(X)), repeats=n_perturbations, axis=0)
     return X_perturb, groups
+
 
 def save_value_cpx():
     st.session_state["SiO2_Cpx"] = st.session_state["SiO2_Cpx_Error"]
@@ -52,6 +55,7 @@ def save_value_liq():
     st.session_state["Na2O_Liq"] = st.session_state["Na2O_Liq_Error"]
     st.session_state["K2O_Liq"] = st.session_state["K2O_Liq_Error"]
 
+
 def P_T_predictors(output, model):
 
     if output == 'Pressure' and model == 'cpx_only':
@@ -65,7 +69,6 @@ def P_T_predictors(output, model):
         predictor = rt.InferenceSession("models/"+'Model_cpx_only_T_bias'+'.onnx')
         with open("models/"+'Model_cpx_only_T_bias'+'.json') as json_file:
             bias_json = eval(json.load(json_file))
-    
     
     elif output == 'Pressure' and model == 'cpx_liquid':
         scaler=joblib.load("models/"+"Model_cpx_liquid_P_bias.joblib")
@@ -81,11 +84,37 @@ def P_T_predictors(output, model):
             
     return(scaler, predictor, bias_json)
 
+
 def max_perc(x):
     return(np.percentile(x,84))
 
+
 def min_perc(x):
     return(np.percentile(x,16))
+
+
+def train_domain(df, cpx, output):
+    if cpx == 'cpx_only' and output == 'pressure':
+        warning = df.apply(lambda x: '' if 0.250000<=x['Al2O3_Cpx']<=25.760000
+                                            and 0.000137<=x['Na2O_Cpx']<=7.760000
+                                            and 0.400000<=x['CaO_Cpx']<=24.820000
+                                        else 'Input out of bound', axis=1)  
+    elif cpx == 'cpx_liquid' and output == 'pressure':
+        warning = df.apply(lambda x: '' if 0.250000<=x['Al2O3_Cpx']<=25.760000
+                                            and 0.000137<=x['Na2O_Cpx']<=7.760000
+                                            and 0.030000<=x['MgO_Liq']<=18.587513
+                                        else 'Input out of bound', axis=1) 
+    elif cpx == 'cpx_only' and output == 'temperature':
+        warning = df.apply(lambda x: '' if 0.760000<=x['MgO_Cpx']<=31.300000
+                                            and 0.400000<=x['CaO_Cpx']<=24.820000
+                                            and 0.290000<=x['Al2O3_Cpx']<=19.010000
+                                            and 1.700000<=x['FeOt_Cpx']<=34.200000
+                                            and 0.000179<=x['MnO_Cpx']<=2.980000
+                                        else 'Input out of bound', axis=1)
+    elif cpx == 'cpx_liquid' and output == 'temperature':
+        warning = df.apply(lambda x: '' if 0.030000<=x['MgO_Liq']<=17.723561
+                                        else 'Input out of bound', axis=1)
+    return warning
 
 
 def to_excel(df, index=False, startrow = 0):
