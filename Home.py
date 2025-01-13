@@ -53,8 +53,8 @@ cpx = st.radio(
 if cpx == "cpx_only":
     
     Elements = ['SiO2_Cpx', 'TiO2_Cpx', 'Al2O3_Cpx', 'FeOt_Cpx', 'MgO_Cpx', 'MnO_Cpx', 'CaO_Cpx',  'Na2O_Cpx', 'Cr2O3_Cpx']
-    Elements_std = ['SiO2_Cpx_std', 'TiO2_Cpx_std', 'Al2O3_Cpx_std', 'FeOt_Cpx_std', 'MgO_Cpx_std', 'MnO_Cpx_std', 'CaO_Cpx_std',
-                    'Na2O_Cpx_std', 'Cr2O3_Cpx_std']
+    Elements_std = ['SiO2_Cpx_rel_err', 'TiO2_Cpx_rel_err', 'Al2O3_Cpx_rel_err', 'FeOt_Cpx_rel_err', 'MgO_Cpx_rel_err', 'MnO_Cpx_rel_err', 'CaO_Cpx_rel_err',
+                    'Na2O_Cpx_rel_err', 'Cr2O3_Cpx_rel_err']
 
     st.markdown("The input of the model must have the following structure (it is not necessary to keep the same order of the columns):")           
     input_example =  pd.read_excel('files/template_cpx.xlsx')
