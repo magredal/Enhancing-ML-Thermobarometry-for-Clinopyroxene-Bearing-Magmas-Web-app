@@ -188,9 +188,9 @@ else:
 
     Elements = ['SiO2_Cpx', 'TiO2_Cpx', 'Al2O3_Cpx', 'FeOt_Cpx', 'MgO_Cpx', 'MnO_Cpx', 'CaO_Cpx',  'Na2O_Cpx', 'Cr2O3_Cpx',
                     'SiO2_Liq', 'TiO2_Liq', 'Al2O3_Liq', 'FeOt_Liq', 'MgO_Liq', 'MnO_Liq', 'CaO_Liq',  'Na2O_Liq', 'K2O_Liq']
-    Elements_std = ['SiO2_Cpx_std', 'TiO2_Cpx_std', 'Al2O3_Cpx_std', 'FeOt_Cpx_std', 'MgO_Cpx_std', 'MnO_Cpx_std', 'CaO_Cpx_std',
-                    'Na2O_Cpx_std', 'Cr2O3_Cpx_std', 'SiO2_Liq_std', 'TiO2_Liq_std', 'Al2O3_Liq_std', 'FeOt_Liq_std', 'MgO_Liq_std',
-                    'MnO_Liq_std', 'CaO_Liq_std',  'Na2O_Liq_std', 'K2O_Liq_std']
+    Elements_std = ['SiO2_Cpx_rel_err', 'TiO2_Cpx_rel_err', 'Al2O3_Cpx_rel_err', 'FeOt_Cpx_rel_err', 'MgO_Cpx_rel_err', 'MnO_Cpx_rel_err', 'CaO_Cpx_rel_err',
+                    'Na2O_Cpx_rel_err', 'Cr2O3_Cpx_rel_err', 'SiO2_Liq_rel_err', 'TiO2_Liq_rel_err', 'Al2O3_Liq_rel_err', 'FeOt_Liq_rel_err', 'MgO_Liq_rel_err',
+                    'MnO_Liq_rel_err', 'CaO_Liq_rel_err',  'Na2O_Liq_rel_err', 'K2O_Liq_rel_err']
 
 
     st.markdown("The input of the model must have the following structure (it is not necessary to keep the same order of the columns):")           
