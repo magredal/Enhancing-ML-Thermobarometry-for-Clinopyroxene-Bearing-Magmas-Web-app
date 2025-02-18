@@ -182,6 +182,10 @@ if cpx == "cpx_only":
             st.dataframe(df)
         else:
             st.warning("Incorrect file type (you need to upload a csv, xls or xlsx file)")
+            df = None  # Set df to None if the file format is incorrect
+        if df is not None:
+            # Apply data imputation to replace NaN values with 0
+            df = data_imputation(df)     
 
 
 else:
@@ -366,7 +370,7 @@ if st.button('Make predictions'):
 
         if len(df_std)!=len(df) or len(df_std.columns)!=len(df.columns):
 
-            st.warning("Input dataset and standard deviation has different size.")
+            st.warning("Input dataset and standard deviation have different sizes.")
 
     st.markdown(
     f'<p style="font-size:20px;border-radius:2%;">{"Predictions in progress..."}</p>',
