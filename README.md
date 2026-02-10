@@ -5,4 +5,4 @@ This is the series of codes behind our Web app. Visit the app directly in this l
 
 Distributed under the MIT licence
 
-If you have any issues, please write to: maurizio.petrelli@unipg.it, monica.agredalopez@dottorandi.unipg.it
+If you have any issues, please write to: maurizio.petrelli@unipg.it, monica.agredalopez@unipg.it
